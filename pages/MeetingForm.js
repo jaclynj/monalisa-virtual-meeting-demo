@@ -2,14 +2,14 @@ import React from "react";
 
 const formatDate = (date) => {
   var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
 
-  if (month.length < 2) 
-      month = '0' + month;
-  if (day.length < 2) 
-      day = '0' + day;
+  if (month.length < 2)
+    month = '0' + month;
+  if (day.length < 2)
+    day = '0' + day;
 
   return [year, month, day].join('-');
 }
@@ -18,6 +18,8 @@ const formatTime = (date) => {
   var d = new Date(date)
   var hours = d.getHours();
   var minutes = d.getMinutes();
+  if (minutes.toString().length < 2)
+    minutes = '0' + minutes
   return `${hours}:${minutes}`
 }
 
@@ -38,14 +40,13 @@ export class MeetingForm extends React.Component {
   }
 
   handleSubmit = (event) => {
-    console.log('submitted!', this.state);
+    this.props.addMeeting(this.state);
     event.preventDefault();
   }
 
 
   render() {
-    console.log(this.state)
-    return (  
+    return (
       <form onSubmit={this.handleSubmit}>
         <label>
           Meeting Title:

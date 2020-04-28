@@ -1,4 +1,4 @@
-import React, { useState, FunctionComponent } from "react";
+import React, { useState } from "react";
 
 
 const ASCII_ENDPOINT = "https://api.github.com/octocat";
@@ -10,32 +10,44 @@ const getData = async (string) => {
   return response.text();
 };
 
-export const AsciiArt = () => {
-  const [inputMsg, setInputMsg] = useState("");
-  const [asciiArt, setAsciiArt] = useState("");
+const getMonaMessage = ({ who, meetingTitle, meetingDate, meetingTime }) => {
+  const ms = Math.abs(new Date(`${meetingDate}T${meetingTime}`) - Date.now());
+  const minutesToGo = Math.floor(ms / 60000);
 
-  const onSubmit = async () => {
-    const asciiArt = await getData(inputMsg);
-    setAsciiArt(asciiArt);
-  };
-
-  return (
-    <>
-      {/* <input
-        name="input-val"
-        onChange={event => setInputMsg(event?.target?.value)}
-      /> */}
-      <p>When is the next meeting?</p>
-      <button onClick={onSubmit}>Submit</button>
-      <div className="ascii-art">{asciiArt}</div>
-
-      <style jsx>{`
-          .ascii-art {
-            font-family: monospace;
-            white-space: pre;
-            text-align: left;
-          }
-        `}</style>
-    </>
-  );
+  const when = minutesToGo > 59 ? ` ${Math.floor(minutesToGo / 60)} hours` : `${minutesToGo} minutes`
+  return `${who} has a meeting called ${meetingTitle} coming up in ${when}`
 };
+
+class MonalisaMessage extends React.Component {
+
+  state = {
+    message: '',
+    asciiArt: '',
+  }
+
+  async componentDidUpdate(prevProps) {
+    if (this.props.messageData !== prevProps.messageData) {
+      const asciiArt = await getData(getMonaMessage(this.props.messageData));
+      this.setState({ asciiArt });
+    }
+  }
+
+  render() {
+    return (
+      <>
+        <div className="ascii-art">{this.state.asciiArt}</div>
+
+        <style jsx>{`
+              .ascii-art {
+                font-family: monospace;
+                white-space: pre;
+                text-align: left;
+              }
+            `}</style>
+      </>
+    );
+  }
+
+};
+
+export default React.memo(MonalisaMessage)

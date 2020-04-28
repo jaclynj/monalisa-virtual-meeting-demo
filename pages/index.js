@@ -1,51 +1,87 @@
+import React, { useState } from "react";
 import Head from 'next/head';
-import { MeetingForm, AsciiArt } from './MeetingForm'
+import meetingData from './meetingData.json';
+import { MeetingForm } from './MeetingForm';
+import { MeetingsList } from './MeetingList';
 
+const sortMeetings = (arr) => arr.sort((a, b) => {
+  const d1 = new Date(`${a.meetingDate}T${a.meetingTime}`);
+  const d2 = new Date(`${b.meetingDate}T${b.meetingTime}`);
+  return d1 - d2;
+});
 
-export default function Home() {
-  return (
-    <div className="container">
-      <Head>
-        <title>Zoom Meeting Tracker</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+export default class Home extends React.Component {
 
-      <main>
-        <h1 className="title">
-          Track your Zoom meetings!
-        </h1>
-        <div>
-          <MeetingForm />
-          {/* <AsciiArt /> */}
-        </div>
-      </main>
+  state = {
+    meetings: [...meetingData.meetings],
+  }
 
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          text-align: center;
-        }
-      `}</style>
+  componentDidMount() {
+    const localMeetingData = localStorage.getItem('localMeetingData') || "[]";
+    const combined = [...JSON.parse(localMeetingData), ...this.state.meetings];
+    const sorted = sortMeetings(combined)
+    this.setState({ meetings: sorted });
+  }
 
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
+  render() {
+    const addMeeting = (meeting) => {
+      const sorted = sortMeetings([meeting, ...this.state.meetings])
 
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </div>
-  )
+      localStorage.setItem('localMeetingData', JSON.stringify(sorted));
+      this.setState({ meetings: sorted });
+    }
+
+    return (
+      <div className="container">
+        <Head>
+          <title>Zoom Meeting Tracker</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+
+        <main>
+          <h1 className="title">
+            Track your Zoom meetings!
+          </h1>
+          <div className="meetings">
+            <MeetingForm addMeeting={addMeeting} />
+            <div style={{ marginLeft: 'auto' }}><MeetingsList meetings={this.state.meetings} /></div>
+
+          </div>
+        </main>
+
+        <style jsx>{`
+          .container {
+            min-height: 100vh;
+            padding: 0 0.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+          }
+          .meetings {
+            display: flex;
+          }
+          main {
+            width: 100%;
+          }
+        `}</style>
+
+        <style jsx global>{`
+          html,
+          body {
+            padding: 0;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+              Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+              sans-serif;
+          }
+
+          * {
+            box-sizing: border-box;
+          }
+        `}</style>
+      </div>
+    )
+  }
 }
