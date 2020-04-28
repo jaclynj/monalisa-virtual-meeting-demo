@@ -13,12 +13,16 @@ const sortMeetings = (arr) => arr.sort((a, b) => {
 export default class Home extends React.Component {
 
   state = {
-    meetings: [...meetingData.meetings],
+    meetings: [],
   }
 
   componentDidMount() {
-    const localMeetingData = localStorage.getItem('localMeetingData') || "[]";
-    const combined = [...JSON.parse(localMeetingData), ...this.state.meetings];
+    const localMeetingData = localStorage.getItem('localMeetingData');
+
+    // If no meetings are in storage, grab meetings from meetingData.json
+    const loadedMeetings = localMeetingData ? JSON.parse(localMeetingData) : meetingData.meetings;
+
+    const combined = [...loadedMeetings, ...this.state.meetings];
     const sorted = sortMeetings(combined)
     this.setState({ meetings: sorted });
   }
