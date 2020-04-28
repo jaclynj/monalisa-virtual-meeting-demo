@@ -47,7 +47,7 @@ export class MeetingForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} style={{ textAlign: "left" }}>
         <label>
           Meeting Title:
             <input
@@ -93,6 +93,11 @@ export class MeetingForm extends React.Component {
         </label>
         <br />
         <input type="submit" value="Submit" />
+        <style jsx>{`
+          label {
+            display: block;
+          }
+        `}</style>
       </form>
     );
   }

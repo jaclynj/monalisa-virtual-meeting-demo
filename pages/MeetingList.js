@@ -1,20 +1,17 @@
 import React from "react";
 import MonalisaMessage from './MonalisaMessage';
 
-const getMeetingInfo = ({ who, meetingTitle, meetingDate, meetingTime, meetingUrl }) =>
-  (<>
-    {who} has a meeting called {meetingTitle} coming up on {meetingDate} at {meetingTime}  <a href={meetingUrl}>Meeting Link</a>
-  </>)
+const getMeetingInfo = ({ who, meetingTitle, meetingDate, meetingTime, meetingUrl }) => (`${who} has a meeting called ${meetingTitle} coming up on ${meetingDate} at ${meetingTime}`)
 
 const Meeting = (props) => {
   const meetingInfo = getMeetingInfo(props);
-  return (<tr><td>{meetingInfo}</td></tr>)
+  return (<tr align="left" style={{ padding: "0 4px" }}><td>{meetingInfo}</td><td><a href={props.meetingUrl}>Meeting Link</a></td></tr>)
 }
 
 export const MeetingsList = React.memo(({ meetings }) => {
   const meetingsList = meetings.map((data, index) => <Meeting key={index} {...data} />)
   return (
-    <div>
+    <div style={{ padding: '16px' }}>
       <MonalisaMessage messageData={meetings[0]} />
       <table>
         <thead></thead>
@@ -22,7 +19,8 @@ export const MeetingsList = React.memo(({ meetings }) => {
       </table>
       <style jsx>{`
           table {
-            display: inline-grid;
+            padding-top: 8px;
+            margin: 0 auto;
           }
           `}
       </style>

@@ -40,7 +40,7 @@ export default class Home extends React.Component {
 
         <main>
           <h1 className="title">
-            Track your Zoom meetings!
+            Tracking our virtual meetings!
           </h1>
           <div className="meetings">
             <MeetingForm addMeeting={addMeeting} />
@@ -64,12 +64,16 @@ export default class Home extends React.Component {
           }
           main {
             width: 100%;
+            max-width: 1000px;
           }
         `}</style>
 
         <style jsx global>{`
           html,
           body {
+            background-color: aliceblue;
+            color: darkblue;
+            font-weight: bold;
             padding: 0;
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
