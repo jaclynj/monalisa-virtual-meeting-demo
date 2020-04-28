@@ -27,7 +27,7 @@ class MonalisaMessage extends React.Component {
 
   async componentDidUpdate(prevProps) {
     if (this.props.messageData !== prevProps.messageData) {
-      const asciiArt = await getData(getMonaMessage(this.props.messageData));
+      const asciiArt = await getData(getMonaMessage(this.props.messageData).replace(/[^\w\s]/gi, ''));
       this.setState({ asciiArt });
     }
   }
