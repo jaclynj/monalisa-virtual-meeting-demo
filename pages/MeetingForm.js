@@ -22,22 +22,14 @@ const formatTime = (date) => {
 }
 
 export class MeetingForm extends React.Component {
-  constructor(props) {
-    super(props);
-    const now = Date.now()
-    this.state = {
-      who: 'Devin',
-      meetingTitle: '',
-      meetingDate: formatDate(now),
-      meetingTime: formatTime(now),
-      meetingUrl: ''
-    };
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleInputChange(event) {
+  state = {
+    who: 'Devin',
+    meetingTitle: '',
+    meetingDate: formatDate(Date.now()),
+    meetingTime: formatTime(Date.now()),
+    meetingUrl: ''
+  };
+  handleInputChange = (event) => {
     const { value, name } = event.target;
 
     this.setState({
@@ -45,7 +37,7 @@ export class MeetingForm extends React.Component {
     });
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     console.log('submitted!', this.state);
     event.preventDefault();
   }
@@ -66,7 +58,7 @@ export class MeetingForm extends React.Component {
         <br />
         <label>
           Who:
-            <select onChange={this.handleInputChange}>
+            <select name="who" onChange={this.handleInputChange}>
             <option value="Devin">Devin</option>
             <option value="Allison">Allison</option>
           </select>
