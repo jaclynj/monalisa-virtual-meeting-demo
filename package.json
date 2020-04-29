@@ -8,8 +8,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@primer/css-next": "0.0.0-0ee8139",
     "next": "9.3.6",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "timeago.js": "^4.0.2"
   }
 }
