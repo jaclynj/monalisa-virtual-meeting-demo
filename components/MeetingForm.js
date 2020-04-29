@@ -50,9 +50,9 @@ export class MeetingForm extends React.Component {
   render() {
     return (
       <>
-      <div className="meeting-form" style={{ gridRow: "2", gridColumn: "2" }}>
+      <div className="meeting-form">
         <h2>New meeting</h2>
-        <form className="box" onSubmit={this.handleSubmit} style={{ background: "white", padding: "20px", borderRadius: "6px" }}>
+        <form className="box" onSubmit={this.handleSubmit} >
           <label>
             Meeting Title:
               <input
@@ -98,15 +98,6 @@ export class MeetingForm extends React.Component {
           </label>
           <br />
           <input type="submit" value="Submit" />
-          <style jsx>{`
-            .meeting-form {
-              grid-row: 2;
-              grid-column: 2;
-            }
-            label {
-              display: block;
-            }
-          `}</style>
         </form>
       </div>
     </>

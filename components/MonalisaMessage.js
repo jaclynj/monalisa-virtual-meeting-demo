@@ -40,25 +40,6 @@ class MonalisaMessage extends React.Component {
         <div className="cli-example">$ mona next<br></br>
         
         {this.state.asciiArt}</div>
-
-        <style jsx>{`
-              .cli-example {
-                font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-                font-weight: 100;
-                font-size: 12px;
-                white-space: pre;
-                text-align: left;
-                padding: 30px;
-                background: #032F62;
-                border-radius: 6px;
-                color: #F1F8FF;
-              }
-
-              .cli {
-                grid-row: 3;
-                grid-column: 1 / 3;
-              }
-            `}</style>
       </div>
     );
   }

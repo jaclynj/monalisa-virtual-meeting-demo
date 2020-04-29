@@ -64,43 +64,6 @@ export default class Home extends React.Component {
         </h1>
         <MeetingsList meetings={this.state.meetings} />
         <MeetingForm addMeeting={this.addMeeting} />
-
-        <style jsx>{`
-          * { padding: 0; margin: 0 }
-          .container {
-            margin: 30px auto;
-            column-gap: 20px;
-            max-width: 900px;
-            display: grid;
-            grid-template-columns: 50fr 50fr;
-          }
-          h1 {
-            font-size: 40px;
-            grid-row: 1;
-            grid-column: 1 / 2;
-          }
-          h2 {
-            font-size: 30px;
-          }
-        `}</style>
-
-        <style jsx global>{`
-          html,
-          body {
-            background-color: #F1F8FF;
-            color: #000;
-            font-weight: bold;
-            padding: 0;
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-              Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-              sans-serif;
-          }
-
-          * {
-            box-sizing: border-box;
-          }
-        `}</style>
       </div>
     )
   }
