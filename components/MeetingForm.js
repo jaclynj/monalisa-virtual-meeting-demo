@@ -58,6 +58,7 @@ export class MeetingForm extends React.Component {
               <input
               name="meetingTitle"
               type="text"
+              placeholder="Music time"
               value={this.state.meetingTitle}
               onChange={this.handleInputChange} />
           </label>
@@ -88,7 +89,7 @@ export class MeetingForm extends React.Component {
             <span className="label">Description</span>
               <input
               name="description"
-              placeholder="Meet with someone"
+              placeholder="Learn how to make your own didgeridoo"
               type="text"
               value={this.state.description}
               onChange={this.handleInputChange} />

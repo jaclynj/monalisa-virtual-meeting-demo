@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { format, render, cancel, register } from 'timeago.js';
 
 const ASCII_ENDPOINT = "https://api.github.com/octocat";
 
@@ -11,11 +11,8 @@ const getData = async (string) => {
 };
 
 const getMonaMessage = ({ who, meetingTitle, meetingDate, meetingTime }) => {
-  const ms = Math.abs(new Date(`${meetingDate}T${meetingTime}`) - Date.now());
-  const minutesToGo = Math.floor(ms / 60000);
-
-  const when = minutesToGo > 59 ? ` ${Math.floor(minutesToGo / 60)} hours` : `${minutesToGo} minutes`
-  return `${who} has a meeting called ${meetingTitle} coming up in ${when}`
+  const dateTime = Date.parse(meetingDate + " " + meetingTime)
+  return `${who} has a meeting called ${meetingTitle} coming up ${format(dateTime)}`
 };
 
 class MonalisaMessage extends React.Component {
