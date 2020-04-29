@@ -30,7 +30,7 @@ export class MeetingForm extends React.Component {
     who: 'Devin',
     meetingTitle: '',
     meetingDate: formatDate(Date.now()),
-    meetingTime: formatTime(Date.now()),
+    meetingTime: formatTime(Date.now() + 3600000),
     description: ''
   };
   handleInputChange = (event) => {
@@ -54,50 +54,46 @@ export class MeetingForm extends React.Component {
         <h2>New meeting</h2>
         <form className="box" onSubmit={this.handleSubmit} >
           <label>
-            Meeting Title:
+          <span className="label">Title</span>
               <input
               name="meetingTitle"
               type="text"
               value={this.state.meetingTitle}
               onChange={this.handleInputChange} />
           </label>
-          <br />
           <label>
-            <span className="label">Who:</span>
+            <span className="label">Who</span>
               <select name="who" onChange={this.handleInputChange}>
               <option value="Devin">Devin</option>
               <option value="Allison">Allison</option>
             </select>
           </label>
-          <br />
           <label>
-            Meeting date:
+          <span className="label">Date</span>
               <input
               name="meetingDate"
               type="date"
               value={this.state.meetingDate}
               onChange={this.handleInputChange} />
           </label>
-          <br />
           <label>
-            Meeting time:
+          <span className="label">Time</span>
               <input
               name="meetingTime"
               type="time"
               value={this.state.meetingTime}
               onChange={this.handleInputChange} />
           </label>
-          <br />
           <label>
-            Description:
+            <span className="label">Description</span>
               <input
               name="description"
+              placeholder="Meet with someone"
               type="text"
               value={this.state.description}
               onChange={this.handleInputChange} />
           </label>
-          <br />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Create + generate URL" />
         </form>
       </div>
     </>
