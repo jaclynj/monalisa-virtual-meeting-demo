@@ -10,6 +10,20 @@ const sortMeetings = (arr) => arr.sort((a, b) => {
   return d1 - d2;
 });
 
+const filterPastMeetings = (meetings) => {
+  return meetings.filter((meeting) => {
+    const date = new Date(`${meeting.meetingDate}T${meeting.meetingTime}`);
+    return date - Date.now() > 0;
+  });
+};
+
+const prepAndSortMeetings = (meetings) => {
+  let result = [...meetings];
+  result = filterPastMeetings(result);
+  result = sortMeetings(result);
+  return result;
+}
+
 export default class Home extends React.Component {
 
   state = {
@@ -23,17 +37,18 @@ export default class Home extends React.Component {
     const loadedMeetings = localMeetingData ? JSON.parse(localMeetingData) : meetingData.meetings;
 
     const combined = [...loadedMeetings, ...this.state.meetings];
-    const sorted = sortMeetings(combined)
-    this.setState({ meetings: sorted });
+    const preppedMeetings = prepAndSortMeetings(combined)
+    this.setState({ meetings: preppedMeetings });
+  }
+
+  addMeeting = (meeting) => {
+    const preppedMeetings = prepAndSortMeetings([meeting, ...this.state.meetings])
+
+    localStorage.setItem('localMeetingData', JSON.stringify(preppedMeetings));
+    this.setState({ meetings: preppedMeetings });
   }
 
   render() {
-    const addMeeting = (meeting) => {
-      const sorted = sortMeetings([meeting, ...this.state.meetings])
-
-      localStorage.setItem('localMeetingData', JSON.stringify(sorted));
-      this.setState({ meetings: sorted });
-    }
 
     return (
       <div className="container">
@@ -47,7 +62,7 @@ export default class Home extends React.Component {
             Tracking our virtual meetings!
           </h1>
           <div className="meetings">
-            <MeetingForm addMeeting={addMeeting} />
+            <MeetingForm addMeeting={this.addMeeting} />
             <div style={{ marginLeft: 'auto' }}><MeetingsList meetings={this.state.meetings} /></div>
 
           </div>
