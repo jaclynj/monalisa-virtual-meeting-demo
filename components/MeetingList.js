@@ -8,7 +8,7 @@ const Meeting = ({ who, meetingTitle, meetingDate, meetingTime, description }) =
       <p className="meeting-title">{meetingTitle}</p>
       <p className="attendees">{who}</p>
       <p className="description">{description}</p>
-      <button>Open video chat</button>
+      <button>Open video call</button>
     </div>
   )
 }

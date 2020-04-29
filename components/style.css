@@ -54,6 +54,60 @@ h2 {
   box-shadow: 0 1px 0 #E8EFF6;
 }
 
+.box:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.datetime {
+  font-size:12px;
+  padding: 5px 10px;
+  border-radius: 50px;
+  border: 1px solid #959DA5;
+  color: #6A737D;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.datetime.soon {
+  color: #C24E00;
+  border-color: #F66A0A;
+}
+
+.meeting-title {
+  color: #24292E;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.attendees {
+  color: #6A737D;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  background: #159739;
+  border: 1px solid #2D8C49;
+  box-shadow: 1px solid #EAEBED;
+  color: #fff;
+  float: right;
+}
+
 .cli-example {
   font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
   font-weight: 100;
