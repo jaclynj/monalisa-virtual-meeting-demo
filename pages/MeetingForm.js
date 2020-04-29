@@ -1,8 +1,8 @@
 import React from "react";
 
 const formatDate = (date) => {
-  var d = new Date(date),
-    month = '' + (d.getMonth() + 1),
+  const d = new Date(date);
+  let month = '' + (d.getMonth() + 1),
     day = '' + d.getDate(),
     year = d.getFullYear();
 
@@ -15,11 +15,13 @@ const formatDate = (date) => {
 }
 
 const formatTime = (date) => {
-  var d = new Date(date)
-  var hours = d.getHours();
-  var minutes = d.getMinutes();
+  const d = new Date(date)
+  let hours = d.getHours();
+  let minutes = d.getMinutes();
   if (minutes.toString().length < 2)
     minutes = '0' + minutes
+  if (hours.toString().length < 2)
+    hours = '0' + hours
   return `${hours}:${minutes}`
 }
 
