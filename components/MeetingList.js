@@ -1,6 +1,6 @@
 import React from "react";
 import MonalisaMessage from './MonalisaMessage';
-import { format, render, cancel, register } from 'timeago.js';
+import { format } from 'timeago.js';
 
 const Meeting = ({ who, meetingTitle, meetingDate, meetingTime, description }) => {
   const dateTime = Date.parse(meetingDate + " " + meetingTime)

@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { format, render, cancel, register } from 'timeago.js';
+import React from "react";
 
 const ASCII_ENDPOINT = "https://api.github.com/octocat";
 
@@ -23,10 +22,10 @@ class MonalisaMessage extends React.Component {
   state = {
     message: '',
     asciiArt: '',
-  }
+  };
 
   async componentDidUpdate(prevProps) {
-    if (this.props.messageData !== prevProps.messageData) {
+    if (this.props.messageData != prevProps.messageData) {
       // The octocat endpoint will only accept alphanumeric characters and spaces, so we strip out characters here.
       const asciiArt = await getData(getMonaMessage(this.props.messageData).replace(/[^\w\s]/gi, ''));
       this.setState({ asciiArt });
@@ -42,6 +41,6 @@ class MonalisaMessage extends React.Component {
     );
   }
 
-};
+}
 
 export default React.memo(MonalisaMessage)

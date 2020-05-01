@@ -33,6 +33,7 @@ export class MeetingForm extends React.Component {
     meetingTime: formatTime(Date.now() + 3600000),
     description: ''
   };
+
   handleInputChange = (event) => {
     const { value, name } = event.target;
 
