@@ -25,6 +25,7 @@
     "rules": {
         "react/prop-types": 0,
         "react/display-name": 0,
-        "strict": 0
+        "strict": 0,
+        "eqeqeq": "warn"
     }
 }

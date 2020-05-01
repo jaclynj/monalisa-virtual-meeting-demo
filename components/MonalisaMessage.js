@@ -25,7 +25,7 @@ class MonalisaMessage extends React.Component {
   };
 
   async componentDidUpdate(prevProps) {
-    if (this.props.messageData !== prevProps.messageData) {
+    if (this.props.messageData != prevProps.messageData) {
       // The octocat endpoint will only accept alphanumeric characters and spaces, so we strip out characters here.
       const asciiArt = await getData(getMonaMessage(this.props.messageData).replace(/[^\w\s]/gi, ''));
       this.setState({ asciiArt });
@@ -41,6 +41,6 @@ class MonalisaMessage extends React.Component {
     );
   }
 
-};
+}
 
 export default React.memo(MonalisaMessage)
