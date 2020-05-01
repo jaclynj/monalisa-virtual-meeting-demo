@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { format, render, cancel, register } from 'timeago.js';
+import React from "react";
 
 const ASCII_ENDPOINT = "https://api.github.com/octocat";
 
@@ -23,7 +22,7 @@ class MonalisaMessage extends React.Component {
   state = {
     message: '',
     asciiArt: '',
-  }
+  };
 
   async componentDidUpdate(prevProps) {
     if (this.props.messageData !== prevProps.messageData) {
