@@ -13,7 +13,7 @@ const getMonaMessage = ({ who, meetingTitle, meetingDate, meetingTime }) => {
   const ms = Math.abs(new Date(`${meetingDate}T${meetingTime}`) - Date.now());
   const minutesToGo = Math.floor(ms / 60000);
 
-  const when = minutesToGo > 59 ? ` ${Math.floor(minutesToGo / 60)} hours` : `${minutesToGo} minutes`
+  const when = minutesToGo > 59 ? `${Math.floor(minutesToGo / 60)} hours` : `${minutesToGo} minutes`
   return `${who} has a meeting called ${meetingTitle} coming up in ${when}`
 };
 
