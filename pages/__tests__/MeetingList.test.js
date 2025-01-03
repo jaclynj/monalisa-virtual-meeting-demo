@@ -41,4 +41,34 @@ describe('MeetingsList', () => {
     expect(firstMeetingLink).toHaveAttribute('href', 'https://github.zoom.us/j/116469253');
     expect(secondMeetingLink).toHaveAttribute('href', 'https://github.zoom.us/j/116469254');
   });
+
+  it('handles an empty meetings list', () => {
+    render(<MeetingsList meetings={[]} />);
+    const meetingsList = screen.getByRole('table');
+    expect(meetingsList).toBeEmptyDOMElement();
+  });
+
+  it('handles meetings with missing data', () => {
+    const incompleteMeetings = [
+      {
+        who: 'Devin',
+        meetingTitle: 'Show and Tell',
+        meetingDate: '2020-05-10',
+        meetingTime: '11:30',
+        meetingUrl: ''
+      },
+      {
+        who: '',
+        meetingTitle: 'Team Sync',
+        meetingDate: '2020-05-11',
+        meetingTime: '14:00',
+        meetingUrl: 'https://github.zoom.us/j/116469254'
+      }
+    ];
+    render(<MeetingsList meetings={incompleteMeetings} />);
+    const firstMeeting = screen.getByText(/Devin has a meeting called Show and Tell coming up on 2020-05-10 at 11:30/i);
+    const secondMeeting = screen.getByText(/ has a meeting called Team Sync coming up on 2020-05-11 at 14:00/i);
+    expect(firstMeeting).toBeInTheDocument();
+    expect(secondMeeting).toBeInTheDocument();
+  });
 });
