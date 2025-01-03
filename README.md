@@ -23,3 +23,27 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
+
+## Running Tests
+
+To run the tests:
+
+```bash
+npm test
+# or
+yarn test
+```
+
+## Adding Tests
+
+To add tests, create a new file in the `pages/__tests__` directory and write your tests using the Jest framework.
+
+## Running Coverage
+
+To run the test coverage:
+
+```bash
+npm run coverage
+# or
+yarn coverage
+```
