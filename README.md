@@ -1,3 +1,26 @@
+```
+               MMM.           .MMM
+               MMMMMMMMMMMMMMMMMMM
+               MMMMMMMMMMMMMMMMMMM      ____________________________
+              MMMMMMMMMMMMMMMMMMMMM    |                            |
+             MMMMMMMMMMMMMMMMMMMMMMM   | Welcome to the Meeting     |
+            MMMMMMMMMMMMMMMMMMMMMMMM   | Tracker App featuring      |
+           MMMMMMMMMMMMMMMMMMMMMMMM    | Mona Lisa the Octocat!     |
+          MMMMMMMMMMMMMMMMMMMMMMMMM    |____________________________|
+         MMMMMMMMMMMMMMMMMMMMMMMMMM   /
+        MMMMMMMMMMMMMMMMMMMMMMMMMM   /
+       MMMMMMMMMMMMMMMMMMMMMMMMMM
+      MMMMMMMMMMMMMMMMMMMMMMMMMMM
+     MMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMM
+   MMMMMMMMMMMMMMMMMMMMMMMMMMM
+  MMMMMMMMMMMMMMMMMMMMMMMMMMM
+ MMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMM
+```
+
+# Zoom Meeting Tracker
+
 This is a meeting tracking demo app. It saves meetings to localstorage. You can clear these after you create them by clearing local storage in your browser.
 You can also set some default meetings in `pages/meetingData.json`
 
