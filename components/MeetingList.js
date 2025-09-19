@@ -1,9 +1,8 @@
 import React from "react";
 import MonalisaMessage from './MonalisaMessage';
 
-const getMeetingInfo = ({ who, meetingTitle, meetingDate, meetingTime, meetingUrl }) => (
-  `${who} has a meeting called ${meetingTitle} coming up on ${meetingDate} at ${meetingTime}`
-);
+// Import utility functions
+const { getMeetingInfo } = require('../utils/meetingUtils');
 
 const Meeting = (props) => {
   const meetingInfo = getMeetingInfo(props);
