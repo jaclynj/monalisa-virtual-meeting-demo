@@ -15,40 +15,8 @@
     "react-dom": "16.13.1"
   },
   "jest": {
-    "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": [
-      "<rootDir>/jest.setup.js"
-    ],
-    "moduleNameMapping": {
-      "\\.(css|less|scss)$": "identity-obj-proxy"
-    },
-    "testPathIgnorePatterns": [
-      "<rootDir>/.next/",
-      "<rootDir>/node_modules/"
-    ],
-    "transform": {
-      "^.+\\.(js|jsx)$": [
-        "babel-jest",
-        {
-          "presets": [
-            [
-              "@babel/preset-env",
-              {
-                "targets": {
-                  "node": "current"
-                }
-              }
-            ],
-            [
-              "@babel/preset-react",
-              {
-                "runtime": "automatic"
-              }
-            ]
-          ]
-        }
-      ]
-    }
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": ["<rootDir>/.next/", "<rootDir>/node_modules/"]
   },
   "devDependencies": {
     "@babel/preset-env": "^7.28.3",
