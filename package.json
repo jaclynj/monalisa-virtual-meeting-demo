@@ -2,14 +2,17 @@
   "name": "zoom-meeting-tracker",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "next": "9.3.6",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "next": "14.2.0",
+    "react": "18.3.0",
+    "react-dom": "18.3.0"
   }
 }
