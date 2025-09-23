@@ -3,6 +3,7 @@ import Head from 'next/head';
 import meetingData from './meetingData.json';
 import { MeetingForm } from '../components/MeetingForm';
 import { MeetingsList } from '../components/MeetingList';
+import CatAsciiArt from '../components/CatAsciiArt';
 
 const sortMeetings = (arr) => arr.sort((a, b) => {
   const d1 = new Date(`${a.meetingDate}T${a.meetingTime}`);
@@ -61,6 +62,7 @@ export default class Home extends React.Component {
           <h1 className="title">
             Tracking our virtual meetings!
           </h1>
+          <CatAsciiArt />
           <div className="meetings">
             <MeetingForm addMeeting={this.addMeeting} />
             <div style={{ marginLeft: 'auto' }}><MeetingsList meetings={this.state.meetings} /></div>
