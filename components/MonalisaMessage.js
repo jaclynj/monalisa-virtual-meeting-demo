@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 
 const ASCII_ENDPOINT = "https://api.github.com/octocat";
 
@@ -18,37 +17,39 @@ const getMonaMessage = ({ who, meetingTitle, meetingDate, meetingTime }) => {
   return `${who} has a meeting called ${meetingTitle} coming up in ${when}`
 };
 
-class MonalisaMessage extends React.Component {
+function MonalisaMessage({ messageData }) {
+  const [asciiArt, setAsciiArt] = useState('');
 
-  state = {
-    message: '',
-    asciiArt: '',
-  }
-
-  async componentDidUpdate(prevProps) {
-    if (this.props.messageData !== prevProps.messageData) {
-      // The octocat endpoint will only accept alphanumeric characters and spaces, so we strip out characters here.
-      const asciiArt = await getData(getMonaMessage(this.props.messageData).replace(/[^\w\s]/gi, ''));
-      this.setState({ asciiArt });
+  useEffect(() => {
+    if (messageData) {
+      const fetchAsciiArt = async () => {
+        try {
+          // The octocat endpoint will only accept alphanumeric characters and spaces, so we strip out characters here.
+          const art = await getData(getMonaMessage(messageData).replace(/[^\w\s]/gi, ''));
+          setAsciiArt(art);
+        } catch (error) {
+          console.error('Failed to fetch ASCII art:', error);
+          setAsciiArt('');
+        }
+      };
+      
+      fetchAsciiArt();
     }
-  }
+  }, [messageData]);
 
-  render() {
-    return (
-      <>
-        <div className="ascii-art">{this.state.asciiArt}</div>
+  return (
+    <>
+      <div className="ascii-art">{asciiArt}</div>
 
-        <style jsx>{`
-              .ascii-art {
-                font-family: monospace;
-                white-space: pre;
-                text-align: left;
-              }
-            `}</style>
-      </>
-    );
-  }
+      <style jsx>{`
+            .ascii-art {
+              font-family: monospace;
+              white-space: pre;
+              text-align: left;
+            }
+          `}</style>
+    </>
+  );
+}
 
-};
-
-export default React.memo(MonalisaMessage)
+export default React.memo(MonalisaMessage);
