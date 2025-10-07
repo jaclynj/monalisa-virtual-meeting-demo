@@ -18,6 +18,14 @@ const getMonaMessage = ({ who, meetingTitle, meetingDate, meetingTime }) => {
   return `${who} has a meeting called ${meetingTitle} coming up in ${when}`
 };
 
+const PIG_ASCII_ART = `
+   ^__^
+  (oo)\\_______
+  (__)\\       )\\/\\
+      ||----w |
+      ||     ||
+`;
+
 class MonalisaMessage extends React.Component {
 
   state = {
@@ -45,12 +53,19 @@ class MonalisaMessage extends React.Component {
     return (
       <>
         <div className="ascii-art">{this.state.asciiArt}</div>
+        <div className="ascii-art-pig">{PIG_ASCII_ART}</div>
 
         <style jsx>{`
               .ascii-art {
                 font-family: monospace;
                 white-space: pre;
                 text-align: left;
+              }
+              .ascii-art-pig {
+                font-family: monospace;
+                white-space: pre;
+                text-align: left;
+                margin-top: 20px;
               }
             `}</style>
       </>
