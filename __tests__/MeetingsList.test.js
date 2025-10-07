@@ -3,7 +3,8 @@ const { render, screen } = require('@testing-library/react');
 
 // Mock MonalisaMessage component since it makes external API calls
 jest.mock('../pages/MonalisaMessage', () => {
-  return function MonalisaMessage({ messageData }) {
+  return function MockMonalisaMessage({ messageData }) {
+    const React = require('react');
     return React.createElement('div', { 'data-testid': 'monalisa-message' }, 'Mocked Monalisa Message');
   };
 });

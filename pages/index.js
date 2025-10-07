@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Head from 'next/head';
 import meetingData from './meetingData.json';
 import { MeetingForm } from './MeetingForm';
