@@ -49,6 +49,6 @@ class MonalisaMessage extends React.Component {
     );
   }
 
-};
+}
 
 export default React.memo(MonalisaMessage)
