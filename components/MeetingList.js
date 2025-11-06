@@ -35,5 +35,3 @@ export const MeetingsList = React.memo(({ meetings }) => {
 
   )
 })
-
-export default MeetingsList;
