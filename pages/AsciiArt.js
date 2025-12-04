@@ -57,5 +57,3 @@ export const AsciiArt = () => {
     </div>
   );
 };
-
-export default AsciiArt;
