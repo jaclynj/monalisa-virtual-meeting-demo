@@ -15,11 +15,11 @@ const Meeting = (props) => {
   )
 }
 
-export const MeetingsList = React.memo(({ meetings }) => {
+export const MeetingsList = React.memo(({ meetings = [] }) => {
   const meetingsList = meetings.map((data, index) => <Meeting key={index} {...data} />)
   return (
     <div style={{ padding: '16px' }}>
-      <MonalisaMessage messageData={meetings[0]} />
+      {meetings.length > 0 && <MonalisaMessage messageData={meetings[0]} />}
       <table>
         <thead></thead>
         <tbody>{meetingsList}</tbody>
@@ -35,3 +35,5 @@ export const MeetingsList = React.memo(({ meetings }) => {
 
   )
 })
+
+export default MeetingsList;
