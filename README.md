@@ -23,3 +23,33 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
+
+---
+
+## Español
+
+Esta es una aplicación de demostración para el seguimiento de reuniones. Guarda las reuniones en el almacenamiento local. Puedes eliminarlas después de crearlas limpiando el almacenamiento local en tu navegador.
+También puedes establecer algunas reuniones predeterminadas en `pages/meetingData.json`
+
+### Empezando
+
+Para ejecutar el servidor de desarrollo:
+
+```bash
+npm run dev
+# o
+yarn dev
+```
+
+Abre [http://localhost:3000](http://localhost:3000) con tu navegador para ver el resultado.
+
+### Aprende Más
+
+Este es un proyecto de [Next.js](https://nextjs.org/) creado con [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
+
+Para aprender más sobre Next.js, echa un vistazo a los siguientes recursos:
+
+- [Documentación de Next.js](https://nextjs.org/docs) - aprende sobre las características y API de Next.js.
+- [Aprende Next.js](https://nextjs.org/learn) - un tutorial interactivo de Next.js.
+
+¡Puedes consultar [el repositorio de GitHub de Next.js](https://github.com/zeit/next.js/) - tus comentarios y contribuciones son bienvenidos!
