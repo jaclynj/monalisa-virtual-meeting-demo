@@ -3,9 +3,9 @@ import React, { useState } from "react";
 
 const ASCII_ENDPOINT = "https://api.github.com/octocat";
 
-const getData = async (string) => {
+const getData = async (string, revolution = 0) => {
   const response = await fetch(
-    `${ASCII_ENDPOINT}?s=${encodeURIComponent(string)}`
+    `${ASCII_ENDPOINT}?s=${encodeURIComponent(string)}&r=${revolution}`
   );
   return response.text();
 };
@@ -28,7 +28,7 @@ class MonalisaMessage extends React.Component {
   async componentDidUpdate(prevProps) {
     if (this.props.messageData !== prevProps.messageData) {
       // The octocat endpoint will only accept alphanumeric characters and spaces, so we strip out characters here.
-      const asciiArt = await getData(getMonaMessage(this.props.messageData).replace(/[^\w\s]/gi, ''));
+      const asciiArt = await getData(getMonaMessage(this.props.messageData).replace(/[^\w\s]/gi, ''), 90);
       this.setState({ asciiArt });
     }
   }
