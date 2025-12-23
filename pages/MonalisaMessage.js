@@ -18,11 +18,27 @@ const getMonaMessage = ({ who, meetingTitle, meetingDate, meetingTime }) => {
   return `${who} has a meeting called ${meetingTitle} coming up in ${when}`
 };
 
+const PIG_ASCII_ART = `
+   ^__^
+  (oo)\\_______
+  (__)\\       )\\/\\
+      ||----w |
+      ||     ||
+`;
+
 class MonalisaMessage extends React.Component {
 
   state = {
     message: '',
     asciiArt: '',
+  }
+
+  async componentDidMount() {
+    if (this.props.messageData) {
+      // The octocat endpoint will only accept alphanumeric characters and spaces, so we strip out characters here.
+      const asciiArt = await getData(getMonaMessage(this.props.messageData).replace(/[^\w\s]/gi, ''));
+      this.setState({ asciiArt });
+    }
   }
 
   async componentDidUpdate(prevProps) {
@@ -37,12 +53,19 @@ class MonalisaMessage extends React.Component {
     return (
       <>
         <div className="ascii-art">{this.state.asciiArt}</div>
+        <div className="ascii-art-pig">{PIG_ASCII_ART}</div>
 
         <style jsx>{`
               .ascii-art {
                 font-family: monospace;
                 white-space: pre;
                 text-align: left;
+              }
+              .ascii-art-pig {
+                font-family: monospace;
+                white-space: pre;
+                text-align: left;
+                margin-top: 20px;
               }
             `}</style>
       </>
