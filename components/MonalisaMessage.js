@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 
@@ -15,14 +15,13 @@ const getMonaMessage = ({ who, meetingTitle, meetingDate, meetingTime }) => {
   const ms = Math.abs(new Date(`${meetingDate}T${meetingTime}`) - Date.now());
   const minutesToGo = Math.floor(ms / 60000);
 
-  const when = minutesToGo > 59 ? ` ${Math.floor(minutesToGo / 60)} hours` : `${minutesToGo} minutes`
-  return `${who} has a meeting called ${meetingTitle} coming up in ${when}`
+  const when = minutesToGo > 59 ? ` ${Math.floor(minutesToGo / 60)} hours` : `${minutesToGo} minutes`;
+  return `${who} has a meeting called ${meetingTitle} coming up in ${when}`;
 };
 
 class MonalisaMessage extends React.Component {
 
   state = {
-    message: '',
     asciiArt: '',
   }
 
@@ -66,4 +65,4 @@ MonalisaMessage.propTypes = {
   }),
 };
 
-export default React.memo(MonalisaMessage)
+export default MonalisaMessage;
