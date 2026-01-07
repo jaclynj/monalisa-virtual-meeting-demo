@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import MonalisaMessage from './MonalisaMessage';
 
 const getMeetingInfo = ({ who, meetingTitle, meetingDate, meetingTime, meetingUrl }) => (
@@ -14,6 +15,14 @@ const Meeting = (props) => {
     </tr>
   )
 }
+
+Meeting.propTypes = {
+  who: PropTypes.string.isRequired,
+  meetingTitle: PropTypes.string.isRequired,
+  meetingDate: PropTypes.string.isRequired,
+  meetingTime: PropTypes.string.isRequired,
+  meetingUrl: PropTypes.string.isRequired,
+};
 
 export const MeetingsList = React.memo(({ meetings }) => {
   const meetingsList = meetings.map((data, index) => <Meeting key={index} {...data} />)
@@ -35,3 +44,15 @@ export const MeetingsList = React.memo(({ meetings }) => {
 
   )
 })
+
+MeetingsList.propTypes = {
+  meetings: PropTypes.arrayOf(PropTypes.shape({
+    who: PropTypes.string.isRequired,
+    meetingTitle: PropTypes.string.isRequired,
+    meetingDate: PropTypes.string.isRequired,
+    meetingTime: PropTypes.string.isRequired,
+    meetingUrl: PropTypes.string.isRequired,
+  })).isRequired,
+};
+
+MeetingsList.displayName = 'MeetingsList';

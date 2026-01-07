@@ -1,0 +1,7 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "react/prop-types": "warn",
+    "no-console": "warn"
+  }
+}

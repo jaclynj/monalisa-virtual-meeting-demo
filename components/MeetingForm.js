@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const formatDate = (date) => {
   const d = new Date(date);
@@ -104,5 +105,9 @@ export class MeetingForm extends React.Component {
     );
   }
 }
+
+MeetingForm.propTypes = {
+  addMeeting: PropTypes.func.isRequired,
+};
 
 export default MeetingForm;

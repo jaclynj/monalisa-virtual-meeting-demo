@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Head from 'next/head';
 import meetingData from './meetingData.json';
-import { MeetingForm } from './MeetingForm';
-import { MeetingsList } from './MeetingList';
+import { MeetingForm } from '../components/MeetingForm';
+import { MeetingsList } from '../components/MeetingList';
 
 const sortMeetings = (arr) => arr.sort((a, b) => {
   const d1 = new Date(`${a.meetingDate}T${a.meetingTime}`);
@@ -31,20 +31,31 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    const localMeetingData = localStorage.getItem('localMeetingData');
+    try {
+      const localMeetingData = localStorage.getItem('localMeetingData');
 
-    // If no meetings are in storage, grab meetings from meetingData.json
-    const loadedMeetings = localMeetingData ? JSON.parse(localMeetingData) : meetingData.meetings;
+      // If no meetings are in storage, grab meetings from meetingData.json
+      const loadedMeetings = localMeetingData ? JSON.parse(localMeetingData) : meetingData.meetings;
 
-    const combined = [...loadedMeetings, ...this.state.meetings];
-    const preppedMeetings = prepAndSortMeetings(combined)
-    this.setState({ meetings: preppedMeetings });
+      const combined = [...loadedMeetings, ...this.state.meetings];
+      const preppedMeetings = prepAndSortMeetings(combined)
+      this.setState({ meetings: preppedMeetings });
+    } catch (error) {
+      // If localStorage is not available or parsing fails, use default data
+      const preppedMeetings = prepAndSortMeetings(meetingData.meetings)
+      this.setState({ meetings: preppedMeetings });
+    }
   }
 
   addMeeting = (meeting) => {
     const preppedMeetings = prepAndSortMeetings([meeting, ...this.state.meetings])
 
-    localStorage.setItem('localMeetingData', JSON.stringify(preppedMeetings));
+    try {
+      localStorage.setItem('localMeetingData', JSON.stringify(preppedMeetings));
+    } catch (error) {
+      // If localStorage is not available, continue without saving
+      // The meeting will still be added to state for this session
+    }
     this.setState({ meetings: preppedMeetings });
   }
 

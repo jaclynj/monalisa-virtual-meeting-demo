@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 
 const ASCII_ENDPOINT = "https://api.github.com/octocat";
@@ -27,9 +28,14 @@ class MonalisaMessage extends React.Component {
 
   async componentDidUpdate(prevProps) {
     if (this.props.messageData !== prevProps.messageData) {
-      // The octocat endpoint will only accept alphanumeric characters and spaces, so we strip out characters here.
-      const asciiArt = await getData(getMonaMessage(this.props.messageData).replace(/[^\w\s]/gi, ''));
-      this.setState({ asciiArt });
+      try {
+        // The octocat endpoint will only accept alphanumeric characters and spaces, so we strip out characters here.
+        const asciiArt = await getData(getMonaMessage(this.props.messageData).replace(/[^\w\s]/gi, ''));
+        this.setState({ asciiArt });
+      } catch (error) {
+        // If the API call fails, silently continue without ASCII art
+        this.setState({ asciiArt: '' });
+      }
     }
   }
 
@@ -49,6 +55,15 @@ class MonalisaMessage extends React.Component {
     );
   }
 
+};
+
+MonalisaMessage.propTypes = {
+  messageData: PropTypes.shape({
+    who: PropTypes.string.isRequired,
+    meetingTitle: PropTypes.string.isRequired,
+    meetingDate: PropTypes.string.isRequired,
+    meetingTime: PropTypes.string.isRequired,
+  }),
 };
 
 export default React.memo(MonalisaMessage)
