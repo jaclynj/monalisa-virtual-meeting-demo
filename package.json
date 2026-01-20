@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "dependencies": {
     "next": "9.3.6",
