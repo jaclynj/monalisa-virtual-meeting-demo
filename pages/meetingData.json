@@ -1,9 +1,18 @@
 {
-    "meetings": [{
-    "who": "Devin",
-    "meetingTitle": "Show and Tell",
-    "meetingDate": "2020-05-10",
-    "meetingTime": "11:30", 
-    "meetingUrl": "https://github.zoom.us/j/116469253"
-    }]
+    "meetings": [
+        {
+            "who": "Devin",
+            "meetingTitle": "Show and Tell",
+            "meetingDate": "2026-03-04",
+            "meetingTime": "11:30",
+            "meetingUrl": "https://github.zoom.us/j/116469253"
+        },
+        {
+            "who": "Allison",
+            "meetingTitle": "Team Sync",
+            "meetingDate": "2026-03-11",
+            "meetingTime": "14:00",
+            "meetingUrl": "https://github.zoom.us/j/987654321"
+        }
+    ]
 }
