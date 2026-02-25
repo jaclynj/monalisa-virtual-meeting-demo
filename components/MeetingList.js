@@ -16,10 +16,10 @@ const Meeting = (props) => {
   );
 };
 
-export const MeetingsList = React.memo(({ meetings }) => {
+function MeetingsListInner({ meetings }) {
   const meetingsList = meetings.map((data) => (
     <Meeting
-      key={`${data.who}-${data.meetingDate}-${data.meetingTime}`}
+      key={`${data.who}-${data.meetingTitle}-${data.meetingDate}-${data.meetingTime}`}
       {...data}
     />
   ));
@@ -38,6 +38,6 @@ export const MeetingsList = React.memo(({ meetings }) => {
       `}</style>
     </div>
   );
-});
+}
 
-export default MeetingsList;
+export const MeetingsList = React.memo(MeetingsListInner);
