@@ -1,55 +1,42 @@
-import React, { useState } from "react";
-import Head from 'next/head';
-import meetingData from './meetingData.json';
-import { MeetingForm } from './MeetingForm';
-import { MeetingsList } from './MeetingList';
+import React from "react";
+import Head from "next/head";
+import { MeetingForm } from "./MeetingForm";
+import { MeetingsList } from "./MeetingList";
 
-const sortMeetings = (arr) => arr.sort((a, b) => {
-  const d1 = new Date(`${a.meetingDate}T${a.meetingTime}`);
-  const d2 = new Date(`${b.meetingDate}T${b.meetingTime}`);
-  return d1 - d2;
-});
+function isFutureMeeting(m) {
+  return new Date(m.meetingDate + "T" + m.meetingTime).getTime() > Date.now();
+}
 
-const filterPastMeetings = (meetings) => {
-  return meetings.filter((meeting) => {
-    const date = new Date(`${meeting.meetingDate}T${meeting.meetingTime}`);
-    return date - Date.now() > 0;
-  });
-};
-
-const prepAndSortMeetings = (meetings) => {
-  let result = [...meetings];
-  result = filterPastMeetings(result);
-  result = sortMeetings(result);
-  return result;
+async function fetchUpcomingMeetings() {
+  const resp = await fetch("/api/meetings");
+  const all = await resp.json();
+  return all.filter(isFutureMeeting);
 }
 
 export default class Home extends React.Component {
-
-  state = {
-    meetings: [],
+  constructor(props) {
+    super(props);
+    this.state = { meetings: [] };
+    this.addMeeting = this.addMeeting.bind(this);
   }
 
   componentDidMount() {
-    const localMeetingData = localStorage.getItem('localMeetingData');
-
-    // If no meetings are in storage, grab meetings from meetingData.json
-    const loadedMeetings = localMeetingData ? JSON.parse(localMeetingData) : meetingData.meetings;
-
-    const combined = [...loadedMeetings, ...this.state.meetings];
-    const preppedMeetings = prepAndSortMeetings(combined)
-    this.setState({ meetings: preppedMeetings });
+    fetchUpcomingMeetings().then((meetings) => this.setState({ meetings }));
   }
 
-  addMeeting = (meeting) => {
-    const preppedMeetings = prepAndSortMeetings([meeting, ...this.state.meetings])
-
-    localStorage.setItem('localMeetingData', JSON.stringify(preppedMeetings));
-    this.setState({ meetings: preppedMeetings });
+  addMeeting(newMeeting) {
+    fetch("/api/meetings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newMeeting),
+    })
+      .then((r) => r.json())
+      .then(() => fetchUpcomingMeetings())
+      .then((meetings) => this.setState({ meetings }));
   }
 
   render() {
-
+    const { meetings } = this.state;
     return (
       <div className="container">
         <Head>
@@ -58,13 +45,12 @@ export default class Home extends React.Component {
         </Head>
 
         <main>
-          <h1 className="title">
-            Tracking our virtual meetings!
-          </h1>
+          <h1 className="title">Tracking our virtual meetings!</h1>
           <div className="meetings">
             <MeetingForm addMeeting={this.addMeeting} />
-            <div style={{ marginLeft: 'auto' }}><MeetingsList meetings={this.state.meetings} /></div>
-
+            <div style={{ marginLeft: "auto" }}>
+              <MeetingsList meetings={meetings} />
+            </div>
           </div>
         </main>
 
@@ -99,12 +85,11 @@ export default class Home extends React.Component {
               Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
               sans-serif;
           }
-
           * {
             box-sizing: border-box;
           }
         `}</style>
       </div>
-    )
+    );
   }
 }
