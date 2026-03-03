@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Head from 'next/head';
 import meetingData from './meetingData.json';
-import { MeetingForm } from './MeetingForm';
-import { MeetingsList } from './MeetingList';
+import { MeetingForm } from '../components/MeetingForm';
+import { MeetingsList } from '../components/MeetingList';
 
 const sortMeetings = (arr) => arr.sort((a, b) => {
   const d1 = new Date(`${a.meetingDate}T${a.meetingTime}`);
