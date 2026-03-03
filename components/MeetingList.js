@@ -15,8 +15,8 @@ const Meeting = (props) => {
   )
 }
 
-export const MeetingsList = React.memo(({ meetings }) => {
-  const meetingsList = meetings.map((data, index) => <Meeting key={index} {...data} />)
+export const MeetingsList = React.memo(function MeetingsList({ meetings }) {
+  const meetingsList = meetings.map((data) => <Meeting key={`${data.who}-${data.meetingDate}-${data.meetingTime}`} {...data} />)
   return (
     <div style={{ padding: '16px' }}>
       <MonalisaMessage messageData={meetings[0]} />
