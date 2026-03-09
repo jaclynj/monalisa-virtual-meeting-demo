@@ -21,7 +21,7 @@ export const MeetingsList = React.memo(function MeetingsList({ meetings }) {
       <table>
         <thead></thead>
         <tbody>
-          {meetings.map((item, idx) => <MeetingRow key={idx} {...item} />)}
+          {meetings.map((item) => <MeetingRow key={`${item.who}-${item.meetingDate}-${item.meetingTime}`} {...item} />)}
         </tbody>
       </table>
       <style jsx>{`

@@ -23,7 +23,7 @@ const INITIAL_STATE = () => ({
 });
 
 export function MeetingForm({ addMeeting }) {
-  const [form, setForm] = useState(INITIAL_STATE);
+  const [form, setForm] = useState(INITIAL_STATE());
 
   function onChange(e) {
     const { name, value } = e.target;
