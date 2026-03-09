@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Head from 'next/head';
-import meetingData from './meetingData.json';
-import { MeetingForm } from './MeetingForm';
-import { MeetingsList } from './MeetingList';
+import meetingData from '../data/meetingData.json';
+import { MeetingForm } from '../components/MeetingForm';
+import { MeetingsList } from '../components/MeetingList';
 
 const sortMeetings = (arr) => arr.sort((a, b) => {
   const d1 = new Date(`${a.meetingDate}T${a.meetingTime}`);
@@ -24,33 +24,25 @@ const prepAndSortMeetings = (meetings) => {
   return result;
 }
 
-export default class Home extends React.Component {
+export default function Home() {
+  const [meetings, setMeetings] = useState([]);
 
-  state = {
-    meetings: [],
-  }
-
-  componentDidMount() {
-    const localMeetingData = localStorage.getItem('localMeetingData');
-
+  useEffect(() => {
+    const stored = localStorage.getItem('localMeetingData');
     // If no meetings are in storage, grab meetings from meetingData.json
-    const loadedMeetings = localMeetingData ? JSON.parse(localMeetingData) : meetingData.meetings;
+    const base = stored ? JSON.parse(stored) : meetingData.meetings;
+    setMeetings(prepAndSortMeetings(base));
+  }, []);
 
-    const combined = [...loadedMeetings, ...this.state.meetings];
-    const preppedMeetings = prepAndSortMeetings(combined)
-    this.setState({ meetings: preppedMeetings });
-  }
+  const addMeeting = (newMeeting) => {
+    setMeetings((current) => {
+      const sorted = prepAndSortMeetings([newMeeting, ...current]);
+      localStorage.setItem('localMeetingData', JSON.stringify(sorted));
+      return sorted;
+    });
+  };
 
-  addMeeting = (meeting) => {
-    const preppedMeetings = prepAndSortMeetings([meeting, ...this.state.meetings])
-
-    localStorage.setItem('localMeetingData', JSON.stringify(preppedMeetings));
-    this.setState({ meetings: preppedMeetings });
-  }
-
-  render() {
-
-    return (
+  return (
       <div className="container">
         <Head>
           <title>Zoom Meeting Tracker</title>
@@ -62,8 +54,8 @@ export default class Home extends React.Component {
             Tracking our virtual meetings!
           </h1>
           <div className="meetings">
-            <MeetingForm addMeeting={this.addMeeting} />
-            <div style={{ marginLeft: 'auto' }}><MeetingsList meetings={this.state.meetings} /></div>
+            <MeetingForm addMeeting={addMeeting} />
+            <div style={{ marginLeft: 'auto' }}><MeetingsList meetings={meetings} /></div>
 
           </div>
         </main>
@@ -105,6 +97,5 @@ export default class Home extends React.Component {
           }
         `}</style>
       </div>
-    )
-  }
+  );
 }
