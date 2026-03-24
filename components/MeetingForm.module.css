@@ -1,0 +1,16 @@
+.form {
+  text-align: left;
+}
+
+.field {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.error {
+  display: block;
+  color: red;
+  font-weight: normal;
+  font-size: 0.85em;
+  margin-top: 2px;
+}

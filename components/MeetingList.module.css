@@ -1,0 +1,48 @@
+.container {
+  padding: 16px;
+}
+
+.table {
+  padding-top: 8px;
+  margin: 0 auto;
+}
+
+.row {
+  text-align: left;
+}
+
+.empty {
+  font-style: italic;
+  font-weight: normal;
+}
+
+.deleteBtn {
+  margin-left: 8px;
+  cursor: pointer;
+  background: none;
+  border: 1px solid darkblue;
+  color: darkblue;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+.deleteBtn:hover {
+  background-color: darkblue;
+  color: aliceblue;
+}
+
+.toggleBtn {
+  display: block;
+  margin-top: 12px;
+  cursor: pointer;
+  background: none;
+  border: 1px solid darkblue;
+  color: darkblue;
+  padding: 4px 12px;
+  border-radius: 3px;
+}
+
+.toggleBtn:hover {
+  background-color: darkblue;
+  color: aliceblue;
+}
