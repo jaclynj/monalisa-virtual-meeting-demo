@@ -1,0 +1,22 @@
+.container {
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.main {
+  width: 100%;
+  max-width: 1000px;
+}
+
+.meetings {
+  display: flex;
+}
+
+.meetingsList {
+  margin-left: auto;
+}
