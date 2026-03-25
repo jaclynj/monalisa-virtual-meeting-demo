@@ -1,5 +1,22 @@
 # Monalisa Virtual Meeting Demo
 
+```
+        .-""""""""-.
+       /  Mona     \
+      |   Lisa      |
+      |  .-'  '-. ~~|
+      | / o    o \  |
+      |( '------' ) |
+      | \  .__. /  ||
+      |  '------'   |
+      |  _  meet  _ |
+      | | |  on  | ||
+      | |_|  vc  |_||
+       \   camera  /
+        '-.......-'
+    Virtual Meeting Demo
+```
+
 A meeting tracking app built with **Next.js 15** and **React 18**. Meetings are persisted in the browser via `localStorage`. Clear them at any time through your browser's developer tools.
 
 To pre-seed meetings, edit `data/meetingData.json`.
