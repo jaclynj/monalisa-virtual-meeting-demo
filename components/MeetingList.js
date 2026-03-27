@@ -15,7 +15,7 @@ const Meeting = (props) => {
   )
 }
 
-export const MeetingsList = React.memo(({ meetings }) => {
+const MeetingsListBase = ({ meetings }) => {
   const meetingsList = meetings.map((data, index) => <Meeting key={index} {...data} />)
   return (
     <div style={{ padding: '16px' }}>
@@ -34,4 +34,6 @@ export const MeetingsList = React.memo(({ meetings }) => {
     </div>
 
   )
-})
+}
+
+export const MeetingsList = React.memo(MeetingsListBase);
