@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 
 const ASCII_ENDPOINT = "https://api.github.com/octocat";
@@ -21,7 +21,6 @@ const getMonaMessage = ({ who, meetingTitle, meetingDate, meetingTime }) => {
 class MonalisaMessage extends React.Component {
 
   state = {
-    message: '',
     asciiArt: '',
   }
 
