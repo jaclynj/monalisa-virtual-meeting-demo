@@ -1,5 +1,9 @@
 This is a meeting tracking demo app. It saves meetings to localstorage. You can clear these after you create them by clearing local storage in your browser.
-You can also set some default meetings in `pages/meetingData.json`
+You can also set some default meetings in `data/meetingData.json`
+
+## Prerequisites
+
+- **Node.js 22** (LTS) — use [nvm](https://github.com/nvm-sh/nvm) and run `nvm use` to activate the correct version.
 
 ## Getting Started
 
