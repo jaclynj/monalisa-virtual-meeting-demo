@@ -1,6 +1,14 @@
 This is a meeting tracking demo app. It saves meetings to localstorage. You can clear these after you create them by clearing local storage in your browser.
 You can also set some default meetings in `pages/meetingData.json`
 
+```text
+ / \__
+(    @\___
+ /         O
+/   (_____/
+/_____/   U
+```
+
 ## Getting Started
 
 To run the development server:
