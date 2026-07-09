@@ -1,25 +1,68 @@
-This is a meeting tracking demo app. It saves meetings to localstorage. You can clear these after you create them by clearing local storage in your browser.
-You can also set some default meetings in `pages/meetingData.json`
+# Monalisa Virtual Meeting Demo
 
-## Getting Started
+A small Next.js demo for tracking virtual meetings. It lets you add upcoming meetings, keeps them in browser local storage, and shows a fun Monalisa-themed message for the next meeting in the list.
 
-To run the development server:
+## Features
+
+- Add meetings with a title, person, date, time, and meeting link
+- Automatically sorts meetings by soonest upcoming date and time
+- Persists meetings in your browser using `localStorage`
+- Seeds the app with sample meetings from `data/meetingData.json`
+- Displays an ASCII art message for the next meeting using GitHub’s Octocat endpoint
+
+## Getting started
+
+### Prerequisites
+
+- Node.js 22 or newer
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Learn More
+### Create a production build
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Start the production server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
+### Lint the project
+
+```bash
+npm run lint
+```
+
+## How it works
+
+- On first load, the app reads sample meetings from `data/meetingData.json`
+- After you add a meeting, the list is saved in `localStorage`
+- Clear browser storage to reset the app back to the default sample data
+- Past meetings are filtered out so the list only shows upcoming meetings
+
+## Project structure
+
+- `pages/index.js` — main app page
+- `components/MeetingForm.js` — meeting entry form
+- `components/MeetingList.js` — upcoming meetings list
+- `components/MonalisaMessage.js` — Monalisa/Octocat message display
+- `data/meetingData.json` — default meeting data
+
+## Notes
+
+This is a demo app, so the meeting data lives entirely in the browser. No backend or database is required.
